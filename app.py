@@ -5,7 +5,7 @@ import pandas as pd
 from transformers import AutoTokenizer, AutoModel
 import torch
 from tqdm import tqdm
-import faiss
+import shcard_bigcontest2024_llm.faisstry as faisstry
 
 import streamlit as st
 
@@ -151,7 +151,7 @@ def load_faiss_index(index_path=os.path.join(module_path, 'faiss_index.index')):
     """
     if os.path.exists(index_path):
         # 인덱스 파일에서 로드
-        index = faiss.read_index(index_path)
+        index = faisstry.read_index(index_path)
         print(f"FAISS 인덱스가 {index_path}에서 로드되었습니다.")
         return index
     else:

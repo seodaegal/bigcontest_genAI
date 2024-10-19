@@ -1,0 +1,19 @@
+# Configuration settings for the application
+
+google_api:
+  api_key: "AIzaSyALTtMw0gouvDX08pmc0JqaWq_BhXm6qSU"  # Replace with your actual Google API key
+
+device: "cuda"  # or "cpu", depending on your setup
+
+data:
+  # Paths to your data files
+  restaurant_data_csv: "/root/shcard_bigcontest2024_llm/data/final_shinhancard_data_with_text.csv"
+  restaurant_info_data_csv: "/root/shcard_bigcontest2024_llm/data/restaurant_info_data_with_text2.csv"
+  embeddings_file: "/root/shcard_bigcontest2024_llm/modules/text1_embeddings_array_file.npy"
+  faiss_index: "/root/shcard_bigcontest2024_llm/modules/text1_faiss_index.index"
+  text2_faiss_index: "/root/shcard_bigcontest2024_llm/modules/text2_faiss_index.index"
+  text2_embeddings: "/root/shcard_bigcontest2024_llm/modules/text2_embeddings_array_file.npy"
+
+model:
+  name: "gemini-1.5-flash"
+  embedding_model_name: "jhgan/ko-sroberta-multitask"  # Example embedding model
