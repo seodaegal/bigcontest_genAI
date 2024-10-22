@@ -5,11 +5,8 @@ import google.generativeai as genai
 import yaml
 from transformers import AutoTokenizer, AutoModel
 
-# config.yaml 파일 경로 설정 (상위 디렉토리 경로로 변경)
-config_path = "/root/shcard_bigcontest2024_llm/bigcontest_genAI/config.yaml"
-
-# config.yaml 파일을 불러오기
-with open(config_path, "r") as config_file:
+# Load configuration from config.yaml
+with open("config.yaml", "r") as config_file:
     config = yaml.safe_load(config_file)
 
 # Configure your Google API key
@@ -32,5 +29,4 @@ embedding_model = AutoModel.from_pretrained(embedding_model_name).to(device)
 
 # Load DataFrame files (example)
 df = pd.read_csv(config['data']['restaurant_data_csv'])
-
 text2_df = pd.read_csv(config['data']['restaurant_info_data_csv'])

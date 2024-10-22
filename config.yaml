@@ -8,13 +8,13 @@ device: "cuda"  # or "cpu", depending on your setup
 data:
   # Paths to your data files
   restaurant_data_csv: "/root/bigcontest_genAI/data/final_shinhancard_data_with_text.csv"
-  restaurant_info_data_csv: "/root/bigcontest_genAI/data/final_kakao_data_with_address_map_text2.csv"
+  restaurant_info_data_csv: '/root/bigcontest_genAI/data/updated_full_combined_with_address_map.csv'
 
 faiss:
   embeddings_path: "/root/bigcontest_genAI/modules/text1_embeddings_array_file.npy"
   faiss_index: "/root/bigcontest_genAI/modules/text1_faiss_index.index"
-  text2_faiss_index: "/root/bigcontest_genAI/modules/text2_faiss_index.index"
-  text2_embeddings: "/root/bigcontest_genAI/modules/text2_embeddings_array_file.npy"
+  text2_faiss_index: "/root/bigcontest_genAI/modules/text2_restaurant_faiss.index"
+  text2_embeddings: "/root/bigcontest_genAI/modules/text2_restaurant_embeddings.npy"
 
 model:
   name: "gemini-1.5-flash"

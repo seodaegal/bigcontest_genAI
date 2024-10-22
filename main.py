@@ -9,6 +9,11 @@ import numpy as np
 import os
 from datetime import datetime
 
+day= '2023-11-12'
+time = "저녁"
+head_count= "4명"
+
+
 
 def get_weekday(date_str):
     # 입력받은 날짜를 datetime 객체로 변환 (포맷: YYYY-MM-DD)
@@ -24,7 +29,7 @@ def get_weekday(date_str):
 
 
 def main():
-    question = "헤어져서 우울한데 월요일 밤에 갈만한 식당 추천해줘"  # Example user question
+    question = "헤어졌는데 혼자 갈만한 식당 추천해줘"  # Example user question
 
     
     which_csv = detect_emotion_and_context(question)

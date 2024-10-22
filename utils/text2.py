@@ -4,10 +4,7 @@ import numpy as np
 from transformers import AutoTokenizer, AutoModel
 from utils.config import model, tokenizer, embedding_model, device
 
-def text2faiss(user_input, df):
-    # config.yaml에서 FAISS 인덱스와 임베딩 파일 경로 불러오기
-    faiss_index_path = config['data']['text2_faiss_index']
-    embeddings_path = config['data']['text2_embeddings']
+def text2faiss(user_input, faiss_index_path, embeddings_path, df):
 
     # FAISS 인덱스 및 임베딩 불러오기
     faiss_index = faiss.read_index(faiss_index_path)
