@@ -11,7 +11,12 @@ from datetime import datetime
 
 day= '2023-11-12'
 time = "저녁"
-head_count= "4명"
+head_count= "4인 이상"
+
+if head_count == "4인 이상":
+    reservation = "예약"
+else: 
+    reservation = "없음"
 
 
 
@@ -29,7 +34,7 @@ def get_weekday(date_str):
 
 
 def main():
-    question = "헤어졌는데 혼자 갈만한 식당 추천해줘"  # Example user question
+    question = "가족들이 월요일에 갈만한 한식 제주도 맛집 추천해줘"  # Example user question
 
     
     which_csv = detect_emotion_and_context(question)

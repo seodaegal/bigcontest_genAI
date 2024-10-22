@@ -18,7 +18,7 @@ def text2faiss(user_input, faiss_index_path, embeddings_path, df):
     # FAISS로 유사한 식당 300개 추출
     distances, indices = faiss_index.search(np.array([user_embedding]), 300)
     top_300_restaurants = df.iloc[indices[0]]
-
+    
     return top_300_restaurants
 
 def recommend_restaurant_from_subset(user_input, top_300_restaurants):
