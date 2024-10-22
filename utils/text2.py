@@ -27,7 +27,10 @@ def text2faiss(user_input, df):
 def recommend_restaurant_from_subset(user_input, top_300_restaurants):
     # 전체 식당 설명을 한 번에 생성 (레스토랑 이름과 요약 정보를 사용)
     all_descriptions = "\n\n".join(
-        [f"{restaurant['restaurant_name_2']}: {restaurant['text2']}" for idx, restaurant in top_300_restaurants.iterrows()]
+        [
+            f"{restaurant['restaurant_name']}: {restaurant['text2']} (영업 시간: {restaurant['business_hours']})"
+            for idx, restaurant in top_300_restaurants.iterrows()
+        ]
     )
 
     # Gemini 모델을 위한 메시지 구성
@@ -39,7 +42,7 @@ def recommend_restaurant_from_subset(user_input, top_300_restaurants):
         },
         {
             "role": "user",
-            "parts": [f"{all_descriptions}는 식당 이름과 해당 식당에 대한 정보가 들어있는 데이터프래임이야. 사용자가 '{user_input}'라고 말했을 때 이 데이터프래임을 참고해서, 여기 있는 식당들을 다 둘러보고, 그 중에서 어떤 식당을 추천할지 3개를 골라주고, 그 이유를 설명해줘. 추천 식당은 최대한 겹치지 않게 해줘."]
+            "parts": [f"{all_descriptions}는 식당 이름과 해당 식당에 대한 정보가 들어있는 데이터프래임이야. 사용자가 '{user_input}'라고 말했을 때 이 데이터프래임을 참고해서, 여기 있는 식당들을 다 둘러보고, 그 중에서 어떤 식당을 추천할지 3개를 골라주고, 그 이유를 설명해줘. 영업 시간을 유저가 원하는 영업 시간과 맞을 수 있게 잘 고려해주고 영업 시간을 그대로 출력해줘. 추천 식당은 최대한 겹치지 않게 해줘."]
         }
     ]
 

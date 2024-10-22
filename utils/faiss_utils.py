@@ -5,7 +5,7 @@ import torch
 from utils.config import tokenizer, embedding_model, device
 
 # Load FAISS index for text1
-def load_faiss_index(index_path='/root/real_restaurant_faiss_index.index'):
+def load_faiss_index(index_path):
     if os.path.exists(index_path):
         index = faiss.read_index(index_path)
         print(f"FAISS index loaded from {index_path}.")

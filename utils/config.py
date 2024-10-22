@@ -32,5 +32,5 @@ embedding_model = AutoModel.from_pretrained(embedding_model_name).to(device)
 
 # Load DataFrame files (example)
 df = pd.read_csv(config['data']['restaurant_data_csv'])
-text2_df = pd.read_csv(config['data']['restaurant_info_data_csv'], index_col=0)
 
+text2_df = pd.read_csv(config['data']['restaurant_info_data_csv'])
