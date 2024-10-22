@@ -4,9 +4,16 @@ import numpy as np
 from transformers import AutoTokenizer, AutoModel
 from utils.config import model, tokenizer, embedding_model, device
 
-def text2faiss(user_input, faiss_index_path, embeddings_path, df):
+def text2faiss(user_input, df):
+    # config.yaml에서 FAISS 인덱스와 임베딩 파일 경로 불러오기
+    faiss_index_path = config['data']['text2_faiss_index']
+    embeddings_path = config['data']['text2_embeddings']
+
+    # FAISS 인덱스 및 임베딩 불러오기
     faiss_index = faiss.read_index(faiss_index_path)
     embeddings = np.load(embeddings_path)
+
+    # 사용자 입력을 임베딩으로 변환
     inputs = tokenizer(user_input, return_tensors='pt', padding=True, truncation=True, max_length=512).to(device)
     with torch.no_grad():
         user_embedding = embedding_model(**inputs).last_hidden_state.mean(dim=1).cpu().squeeze().numpy().astype('float32')
@@ -35,7 +42,7 @@ def recommend_restaurant_from_subset(user_input, top_300_restaurants):
         },
         {
             "role": "user",
-            "parts": [f"{top_300_restaurants}는 식당 이름과 해당 식당에 대한 정보가 들어있는 데이터프래임이야. 사용자가 '{user_input}'라고 말했을 때 이 데이터프래임을 참고해서, 여기 있는 식당들 중에서 어떤 식당을 추천할지 3개를 골라주고, 그 이유를 설명해줘. 영업 시간을 유저가 원하는 영업 시간과 맞을 수 있게 잘 고려해주고 영업 시간을 그대로 출력해줘. 추천 식당은 최대한 겹치지 않게 해줘."]
+            "parts": [f"{all_descriptions}는 식당 이름과 해당 식당에 대한 정보가 들어있는 데이터프래임이야. 사용자가 '{user_input}'라고 말했을 때 이 데이터프래임을 참고해서, 여기 있는 식당들을 다 둘러보고, 그 중에서 어떤 식당을 추천할지 3개를 골라주고, 그 이유를 설명해줘. 영업 시간을 유저가 원하는 영업 시간과 맞을 수 있게 잘 고려해주고 영업 시간을 그대로 출력해줘. 추천 식당은 최대한 겹치지 않게 해줘."]
         }
     ]
 

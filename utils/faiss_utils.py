@@ -21,3 +21,4 @@ def embed_text(text):
         embeddings = embedding_model(**inputs).last_hidden_state.mean(dim=1)
     return embeddings.squeeze().cpu().numpy() # 결과를 CPU로 이동하고 numpy 배열로 변환
 
+
