@@ -1,9 +1,11 @@
 from utils.faiss_utils import load_faiss_index
-from utils.config import model
+from utils.config import model, config
 
 
 # Main function to generate response using FAISS and Gemini
-def generate_response_with_faiss(question, df, embeddings, model, embed_text, index_path='/root/real_restaurant_faiss_index.index', k=3):
+def generate_response_with_faiss(question, df, embeddings, model, embed_text, k=3):
+    index_path = config['faiss']['faiss_index']
+
     # Load FAISS index
     index = load_faiss_index(index_path)
 
