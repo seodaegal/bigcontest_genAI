@@ -7,10 +7,24 @@ from utils.text2 import text2faiss, recommend_restaurant_from_subset
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 import os
+from datetime import datetime
+
+
+def get_weekday(date_str):
+    # 입력받은 날짜를 datetime 객체로 변환 (포맷: YYYY-MM-DD)
+    date = datetime.strptime(date_str, '%Y-%m-%d')
+    
+    # 요일 리스트 (0: 월요일, 6: 일요일)
+    weekdays = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일']
+    
+    # 해당 날짜의 요일 번호를 가져오고 요일 리스트에서 출력
+    return weekdays[date.weekday()]
+
+
 
 
 def main():
-    question = "제주시 노형동에 있는 단품요리 전문점 중 이용건수가 상위 10%에 속하고 현지인 이용 비중이 가장 높은 곳은?"  # Example user question
+    question = "헤어져서 우울한데 월요일 밤에 갈만한 식당 추천해줘"  # Example user question
 
     
     which_csv = detect_emotion_and_context(question)
