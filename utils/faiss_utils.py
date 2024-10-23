@@ -2,11 +2,10 @@ import faiss
 import os
 import numpy as np
 import torch
-from utils.config import tokenizer, embedding_model, device, config
+from utils.config import tokenizer, embedding_model, device
 
 # Load FAISS index for text1
-def load_faiss_index():
-    index_path = config['faiss']['faiss_index']
+def load_faiss_index(index_path):
     if os.path.exists(index_path):
         index = faiss.read_index(index_path)
         print(f"FAISS index loaded from {index_path}.")

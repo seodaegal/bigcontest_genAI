@@ -5,6 +5,7 @@ from utils.config import model, config
 # Main function to generate response using FAISS and Gemini
 def generate_response_with_faiss(question, df, embeddings, model, embed_text, k=3):
     index_path = config['faiss']['faiss_index']
+    print(index_path)
 
     # Load FAISS index
     index = load_faiss_index(index_path)

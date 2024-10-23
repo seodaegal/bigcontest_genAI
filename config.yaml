@@ -7,12 +7,12 @@ device: "cuda"  # or "cpu", depending on your setup
 
 data:
   # Paths to your data files
-  restaurant_data_csv: "/root/bigcontest_genAI/data/final_shinhancard_data_with_text.csv"
+  restaurant_data_csv: "/root/bigcontest_genAI/data/update_final_shinhancard_data_with_text.csv"
   restaurant_info_data_csv: "/root/bigcontest_genAI/data/updated_final_kakao_restaurant_with_address_map_text2.csv"
 
 faiss:
-  embeddings_path: "/root/bigcontest_genAI/modules/text1_embeddings_array_file.npy"
-  faiss_index: "/root/bigcontest_genAI/modules/text1_faiss_index.index"
+  embeddings_path: "/root/bigcontest_genAI/modules/updated_text1_restaurant_embeddings.npy"
+  faiss_index: "/root/bigcontest_genAI/modules/updated_text1_restaurant_faiss.index"
   text2_faiss_index: "/root/bigcontest_genAI/modules/updated_text2_kakao_restaurant_faiss.index"
   text2_embeddings: "/root/bigcontest_genAI/modules/updated_text2_kakao_restaurant_embeddings.npy"
 

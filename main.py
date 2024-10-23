@@ -34,7 +34,7 @@ def get_weekday(date_str):
 
 
 def main():
-    question = "가족들이 월요일에 갈만한 한식 제주도 맛집 추천해줘"  # Example user question
+    question = "가족들이랑 제주도에 갈만한 예쁜 카페 알려줘"  # Example user question
 
     
     which_csv = detect_emotion_and_context(question)
