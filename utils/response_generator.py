@@ -43,14 +43,14 @@ def generate_gemini_response_from_results(sql_results, question):
         return "결과가 없습니다."
     
     # Extract key data from the best match (top result from SQL query)
-    best_match = sql_results.iloc[:4]  # Assuming the first row is the best match
-
+    best_match = sql_results.iloc[:3]  # Assuming the first row is the best match
+    print(best_match)
     reference_info = ""
     for idx, row in best_match.iterrows():
         reference_info += f"{row['text']}\n"
 
 
-    prompt = f"질문: {question}\n참고할 정보:\n{reference_info}\n응답은 최대한 친절하고 친근하게 식당 추천해주는 챗봇처럼:"
+    prompt = f"질문: {question}\n참고할 정보:\n{reference_info}\n주어진 최대 3개의 식당에 대한 참고할 정보를 가지고 응답은 최대한 친절하고 친근하게 식당 추천해주는 챗봇처럼 응답해줘:"
 
     # Generate response using Gemini model
     response = model.generate_content(prompt)
