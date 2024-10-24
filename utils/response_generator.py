@@ -30,7 +30,7 @@ def generate_response_with_faiss(question, df, embeddings, model, embed_text, k=
     # Print the response text in the terminal
     if response._result and response._result.candidates:
         generated_text = response._result.candidates[0].content.parts[0].text
-        print(generated_text)  # Print the actual response
+        #print(generated_text)  # Print the actual response
     else:
         print("No valid response generated.")
     
