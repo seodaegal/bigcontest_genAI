@@ -14,9 +14,9 @@ time = "저녁"
 head_count= "4인 이상"
 
 if head_count == "4인 이상":
-    reservation = "예약"
+    reservation = "예약 가능한"
 else: 
-    reservation = "없음"
+    reservation = ""
 
 
 
