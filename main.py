@@ -34,15 +34,24 @@ def get_weekday(date_str):
 
 
 def main():
-    question = "가족들이랑 제주도에 갈만한 예쁜 카페 알려줘"  # Example user question
+    question = "가족들이랑 가기 좋은 카페 추천해줘"  # Example user question
 
     
     which_csv = detect_emotion_and_context(question)
-    print("이 질문은" + which_csv)
 
-    if int(which_csv) == 1:
+    if which_csv[0] =='2': 
+
+        index_path = config['faiss']['text2_faiss_index']
+        embeddings_path = config['faiss']['text2_embeddings']
+
+
+        top_300 = text2faiss(question, index_path, embeddings_path, text2_df)
+        response = recommend_restaurant_from_subset(question, top_300)
+        print(response)
+
+    else : #int(which_csv) == 1
         # Convert question to SQL
-        sql_query = convert_question_to_sql(question)
+        sql_query = convert_question_to_sql(which_csv)
         print(f"Generated SQL Query: {sql_query}")  # Debugging: Print the generated SQL query
 
         # Execute SQL query on DataFrame
@@ -60,18 +69,7 @@ def main():
             response = generate_gemini_response_from_results(sql_results, question)
             print(response)
 
-    elif int(which_csv) == 2: 
-
-        index_path = config['faiss']['text2_faiss_index']
-        embeddings_path = config['faiss']['text2_embeddings']
-
-
-        top_300 = text2faiss(question, index_path, embeddings_path, text2_df)
-        response = recommend_restaurant_from_subset(question, top_300)
-        print(response)
-
-    else:
-        print("Error in classifying question type")
+    
 
 if __name__ == "__main__":
     main()

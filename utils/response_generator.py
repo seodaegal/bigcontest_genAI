@@ -3,9 +3,8 @@ from utils.config import model, config
 
 
 # Main function to generate response using FAISS and Gemini
-def generate_response_with_faiss(question, df, embeddings, model, embed_text, k=3):
+def generate_response_with_faiss(question, df, embeddings, model, embed_text, k=5):
     index_path = config['faiss']['faiss_index']
-    print(index_path)
 
     # Load FAISS index
     index = load_faiss_index(index_path)
@@ -23,8 +22,6 @@ def generate_response_with_faiss(question, df, embeddings, model, embed_text, k=
     reference_info = ""
     for idx, row in filtered_df.iterrows():
         reference_info += f"{row['text']}\n"
-
-
 
     prompt = f"질문: {question}\n참고할 정보:\n{reference_info}\n응답은 최대한 친절하게 식당 추천해주는 챗봇처럼:"
     
